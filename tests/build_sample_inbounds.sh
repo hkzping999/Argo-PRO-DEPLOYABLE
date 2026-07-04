@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export JQ_BIN="${JQ_BIN:-$(command -v jq)}"
+export WORK_DIR="${WORK_DIR:-/tmp/argox-sample}"
+export XRAY_BIN="${XRAY_BIN:-/nonexistent/xray}"
+export NODE_NAME="${NODE_NAME:-SampleNode}"
+export UUID="${UUID:-11111111-1111-4111-8111-111111111111}"
+export WS_PATH="${WS_PATH:-samplepath}"
+export ARGO_DOMAIN="${ARGO_DOMAIN:-sample.example.com}"
+export TLS_SERVER="${TLS_SERVER:-addons.mozilla.org}"
+export REALITY_PRIVATE="${REALITY_PRIVATE:-sampleRealityPrivateKey}"
+export REALITY_TARGET="${REALITY_TARGET:-addons.mozilla.org:443}"
+export REALITY_SERVER_NAMES="${REALITY_SERVER_NAMES:-addons.mozilla.org}"
+export REALITY_CHECK_ON_INSTALL="n"
+export VLESS_SERVER_DECRYPTION="${VLESS_SERVER_DECRYPTION:-none}"
+"$ROOT/scripts/build_inbounds.sh" --tags "reality-vision,reality-grpc,vless-ws,xhttp-h1.1-cdn,xhttp-h3-direct,httpupgrade-cdn,hysteria2,trojan-direct"
